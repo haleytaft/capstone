@@ -1,4 +1,7 @@
-# Practice with Streamlit
+# Links that helped with streamlit
+# https://www.streamlit.io/about
+# https://github.com/streamlit/streamlit
+# https://docs.streamlit.io/en/stable/getting_started.html
 
 # Imports
 import streamlit as st
@@ -23,12 +26,12 @@ def create_list_docs():
             doc = nlp_lg("u" + str(DATA['combined_text'][i]) + "'")
             list_docs.append(doc)
     return list_docs
-    
+
 # @st.cache # This functionwill be cashed
 # Calculates how similar each toy is the to the text and scores them
 # @st.cache # This functionwill be cashed
 # @st.cache
-def calculate_similarity_with_spacy(nlp, df, user_text, n=6):
+def calculate_similarity_with_spacy(nlp, df, user_text, list_docs, n=6):
     # Calculate similarity with Spacy
     list_sim = []
     toy_score = []
@@ -47,8 +50,8 @@ def calculate_similarity_with_spacy(nlp, df, user_text, n=6):
 # Finds the toys and ranks them from highest to lowest
 # @st.cache
 # @st.cache
-def dog_toy_recommender(nlp, data, user_text):
-    ranking_list = calculate_similarity_with_spacy(nlp_lg, data, user_text=user_text)
+def dog_toy_recommender(nlp, data, user_text, list_docs):
+    ranking_list = calculate_similarity_with_spacy(nlp_lg, data, user_text, list_docs)
     ranked_dict = {}
     for i, score_toy in enumerate(ranking_list):
         ranked_dict[score_toy[0]] = {i : [ranking_list[i][2], score_toy[1]]}
@@ -60,8 +63,8 @@ def dog_toy_recommender(nlp, data, user_text):
 
 # Runs the recommender
 # @st.cache(hash_funcs={spacy.tokens.doc.Doc: dog_toy_recommender})
-def run_recommender(nlp, data, user_text):
-    toys = dog_toy_recommender(nlp_lg, data, user_text)
+def run_recommender(nlp, data, user_text, list_docs):
+    toys = dog_toy_recommender(nlp_lg, data, user_text, list_docs)
     toy_list = []
     for i in list(toys)[:10]:
         toy_list.append((i, toys[i]))
@@ -142,7 +145,7 @@ def main():
 
             list_docs = create_list_docs()
 
-            toy_list = run_recommender(nlp_lg, DATA, user_text)
+            toy_list = run_recommender(nlp_lg, DATA, user_text, list_docs)
             st.success(toy_list)
             # st.dataframe(toy_list)
 
