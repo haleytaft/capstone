@@ -11,21 +11,19 @@ import spacy
 nlp_lg = spacy.load('en_core_web_lg')
 # st.write("The Whole Dataframe is here:")
 # The final dataframe
-data = pd.read_csv('./data/chewy.csv')
+DATA = pd.read_csv('./data/chewy.csv')
 # st.dataframe(data)
 
 # Getting all of the data for the comparison
 # @st.cache (hash_funcs={spacy.lang.en.English: my_hash_func})
 def create_list_docs():
     list_docs = []
-    for i in range(len(data)):
-        if data['combined_text'][i] != '':
-            doc = nlp_lg("u" + str(data['combined_text'][i]) + "'")
+    for i in range(len(DATA)):
+        if DATA['combined_text'][i] != '':
+            doc = nlp_lg("u" + str(DATA['combined_text'][i]) + "'")
             list_docs.append(doc)
     return list_docs
-
-list_docs = create_list_docs()
-
+    
 # @st.cache # This functionwill be cashed
 # Calculates how similar each toy is the to the text and scores them
 # @st.cache # This functionwill be cashed
@@ -53,7 +51,6 @@ def dog_toy_recommender(nlp, data, user_text):
     ranking_list = calculate_similarity_with_spacy(nlp_lg, data, user_text=user_text)
     ranked_dict = {}
     for i, score_toy in enumerate(ranking_list):
-    #     print(i, score_toy[0], ranking_list[i][2])
         ranked_dict[score_toy[0]] = {i : [ranking_list[i][2], score_toy[1]]}
     final_dict = {}
     for i in sorted(ranked_dict, reverse=True) :
@@ -104,8 +101,8 @@ def main():
 
         st.subheader('Take a look at the dataframe:')
 
-        data = pd.read_csv('./data/chewy.csv')
-        data
+        # DATA = pd.read_csv('./data/chewy.csv')
+        DATA
 
         # ADD IN EDA STUFF ONCE DONE
         st.subheader('General Dataset stuff --FIX THIS TITLE')
@@ -143,7 +140,9 @@ def main():
 
         if st.button("Let's Find Some toys!"):
 
-            toy_list = run_recommender(nlp_lg, data, user_text)
+            list_docs = create_list_docs()
+
+            toy_list = run_recommender(nlp_lg, DATA, user_text)
             st.success(toy_list)
             # st.dataframe(toy_list)
 
