@@ -67,7 +67,7 @@ def run_recommender(nlp, data, user_text):
     toys = dog_toy_recommender(nlp_lg, data, user_text)
     toy_list = []
     for i in list(toys)[:10]:
-        toy_list.append(toys)
+        toy_list.append((i, toys[i]))
     return toy_list
 
 def main():
