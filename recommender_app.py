@@ -16,15 +16,15 @@ data = pd.read_csv('./data/chewy.csv')
 
 # Getting all of the data for the comparison
 # @st.cache (hash_funcs={spacy.lang.en.English: my_hash_func})
-# def create_list_docs(data):
-list_docs = []
-for i in range(len(data)):
-    if data['combined_text'][i] != '':
-        doc = nlp_lg("u" + str(data['combined_text'][i]) + "'")
-        list_docs.append(doc)
-    # return list_docs
+def create_list_docs():
+    list_docs = []
+    for i in range(len(data)):
+        if data['combined_text'][i] != '':
+            doc = nlp_lg("u" + str(data['combined_text'][i]) + "'")
+            list_docs.append(doc)
+    return list_docs
 
-# list_docs = create_list_docs(data)
+list_docs = create_list_docs()
 
 # @st.cache # This functionwill be cashed
 # Calculates how similar each toy is the to the text and scores them
