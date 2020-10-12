@@ -8,23 +8,23 @@ This is my final capstone project from the Data Science Immersive Bootcamp at Ge
 - Conclusions and Recommendations
 
 ## Project Directory 
-├── 00-capstone-checkin2.ipynb
-├── 01-data-collection.ipynb
-├── 02-data-cleaning-eda.ipynb
-├── 03spacy-testing.ipynb
-├── README.md
-├── data
-│   ├── chewtoy_df.csv
-│   ├── chewy.csv
-│   ├── fetchtoy_df.csv
-│   ├── interactivetoy_df.csv
-│   ├── plushtoy_df.csv
-│   └── ropetugtoy_df.csv
-├── images
-│   ├── vect-cat-box.png
-│   └── vect-cat-hist.png
-└── recommender_app.py
-
+├── 00-capstone-checkin2.ipynb   
+├── 01-data-collection.ipynb    
+├── 02-data-cleaning-eda.ipynb    
+├── 03spacy-testing.ipynb    
+├── README.md    
+├── data    
+│   ├── chewtoy_df.csv    
+│   ├── chewy.csv   
+│   ├── fetchtoy_df.csv   
+│   ├── interactivetoy_df.csv    
+│   ├── plushtoy_df.csv    
+│   └── ropetugtoy_df.csv    
+├── images     
+│   ├── vect-cat-box.png     
+│   └── vect-cat-hist.png    
+└── recommender_app.py    
+  
 ## Problem Statement  
 Based off the reviews, descriptions and key benefits of dog toys, and a person's description of their dog's general personality, I will create a recommendation system that will suggest ten dog toys that the dog might enjoy based off the similarity in what was written and the text provided about each toy. 
 
