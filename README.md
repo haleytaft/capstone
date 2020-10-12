@@ -27,7 +27,7 @@ Preprocessing:
  - I then tokenized this column and removed stop words and other words I thought would not hold much meaning such as various forms of 'dog' and 'toy' since all the text was talking about dog toys. 
  - I used spaCy to vectorize and then manually calculated the average vector for each toy's text for EDA. 
 
-EDA: **ADD IN SOME FINDINGS**
+EDA: 
  - Looked at the count of toys in each category and subcategory. This showed me that for some reason, there was only one toy in the ball subcategory and that I would have to rescrape data once more toys were added back to the website. 
  - I also used CountVectorization to look at most commons words amongst the whole dataframe and then among each category to see if there were any words that were or were not common among all categories. 
  - I also looked at the overall rating and how they were distributed amongst each category and how those categories compared to each other. 
